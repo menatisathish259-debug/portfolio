@@ -1,6 +1,12 @@
+/**
+ * ==========================================================================
+ * PORTFOLIO & RESUME - VANILLA JAVASCRIPT CONTROLLER (script.js)
+ * ==========================================================================
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. Dark / Light Mode Toggle with Persistence
+  // 1. Dark / Light Mode Toggle with LocalStorage Persistence
   const themeToggleBtn = document.getElementById('theme-toggle');
   const darkIcon = document.getElementById('theme-toggle-dark-icon');
   const lightIcon = document.getElementById('theme-toggle-light-icon');
