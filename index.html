@@ -44,6 +44,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
 
+  <!-- NAVBAR -->
   <header class="sticky top-0 z-50 w-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 no-print">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
@@ -64,6 +65,7 @@
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
         <a href="#about" class="text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">About</a>
+        <a href="#profiles" class="text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">Profiles</a>
         <a href="#skills" class="text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">Skills</a>
         <a href="#education" class="text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">Education</a>
         <a href="#projects" class="text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">Projects &amp; Activity</a>
@@ -72,18 +74,15 @@
 
       <!-- Utility Actions (Print Resume & Theme Toggle) -->
       <div class="flex items-center space-x-2 sm:space-x-3">
-        <!-- Print / PDF Resume Trigger -->
         <button onclick="window.print()" title="Print / Save PDF Resume" class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all shadow-sm">
           <i class="fa-solid fa-file-pdf text-brand-600 dark:text-blue-400 text-sm"></i>
           <span class="hidden sm:inline">Download CV</span>
         </button>
 
-        <!-- Dark/Light Mode Button -->
         <button id="theme-toggle" type="button" aria-label="Toggle Dark Mode" class="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
           <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
         </button>
 
-        <!-- Mobile Drawer Menu Button -->
         <button id="mobile-menu-btn" type="button" aria-label="Open Navigation" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
@@ -93,6 +92,7 @@
     <!-- Mobile Drawer -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-6 py-4 space-y-3">
       <a href="#about" class="block py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 mobile-nav-link">About</a>
+      <a href="#profiles" class="block py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 mobile-nav-link">Coding Profiles</a>
       <a href="#skills" class="block py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 mobile-nav-link">Skills</a>
       <a href="#education" class="block py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 mobile-nav-link">Education</a>
       <a href="#projects" class="block py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 mobile-nav-link">Projects &amp; Activity</a>
@@ -102,23 +102,19 @@
 
   <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
 
-    <!-- LinkedIn-Style Profile Banner Header Card -->
+    <!-- HERO SECTION WITH LINKEDIN-STYLE BANNER -->
     <section id="hero" class="relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md">
       
-      <!-- Upper Banner Canvas with tech grid pattern & college branding -->
+      <!-- Banner Canvas -->
       <div class="h-44 sm:h-52 w-full bg-gradient-to-r from-slate-950 via-blue-950 to-indigo-950 relative flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
-        <!-- Tech grid background -->
         <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#60a5fa_1.2px,transparent_1.2px)] [background-size:20px_20px] pointer-events-none"></div>
 
-        <!-- Top Row on Banner: College Name on the right, email on the left -->
         <div class="z-10 flex flex-wrap items-center justify-between gap-2 w-full">
-          <!-- Direct Email pill -->
           <a href="mailto:menatisathish259@gmail.com" class="inline-flex items-center gap-2 bg-black/40 hover:bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs text-white/90 hover:text-white transition-all shadow-sm">
             <i class="fa-regular fa-envelope text-blue-400"></i>
             <span class="font-mono text-xs">menatisathish259@gmail.com</span>
           </a>
 
-          <!-- College Branding Header -->
           <div class="text-right flex items-center gap-2 bg-black/40 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs text-blue-200">
             <i class="fa-solid fa-graduation-cap text-sky-400"></i>
             <span class="font-semibold tracking-wide hidden sm:inline">Sri Venkatesa Perumal College of Engineering and Technology</span>
@@ -126,7 +122,6 @@
           </div>
         </div>
 
-        <!-- College Program Badge on bottom right of banner -->
         <div class="z-10 self-end">
           <span class="text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-lg bg-blue-500/20 backdrop-blur-md border border-blue-400/30 text-blue-200 flex items-center gap-1.5">
             <i class="fa-solid fa-microchip text-blue-400"></i> B.Tech Computer Science &amp; Engineering (AI)
@@ -134,14 +129,14 @@
         </div>
       </div>
 
+      <!-- Hero Profile Body -->
       <div class="px-6 sm:px-10 pb-8 pt-0 relative">
         <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between -mt-16 sm:-mt-20 gap-4 mb-6">
           
-          <!-- Avatar Container with #OpenToWork Badge & Real Photo -->
+          <!-- Avatar Container -->
           <div class="relative group shrink-0">
             <div class="open-to-work-ring rounded-full shadow-2xl">
               <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-800 ring-4 ring-white dark:ring-slate-900 relative">
-                <!-- User's actual profile photo with safe fallbacks -->
                 <img 
                   id="profile-img" 
                   src="profile.jpeg" 
@@ -152,19 +147,17 @@
               </div>
             </div>
 
-            <!-- Open To Work Pill Badge -->
             <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold tracking-wider uppercase px-3 py-0.5 rounded-full shadow-lg border-2 border-white dark:border-slate-900 flex items-center gap-1 whitespace-nowrap">
               <i class="fa-solid fa-briefcase text-[10px]"></i> #OpenToWork
             </div>
 
-            <!-- Change/Upload photo button trigger -->
             <label for="photo-upload-input" title="Click to upload custom photo" class="absolute top-1 right-1 p-2 rounded-full bg-slate-900/80 hover:bg-slate-950 text-white text-xs cursor-pointer shadow-md opacity-0 group-hover:opacity-100 transition-opacity no-print">
               <i class="fa-solid fa-camera"></i>
             </label>
             <input type="file" id="photo-upload-input" accept="image/*" class="hidden" />
           </div>
 
-          <!-- Action Buttons Bar -->
+          <!-- Top Action Buttons -->
           <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">
             <a href="mailto:menatisathish259@gmail.com" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all active:scale-95">
               <i class="fa-solid fa-paper-plane text-xs"></i> Get In Touch
@@ -180,8 +173,8 @@
           </div>
         </div>
 
-        <!-- Name & Professional Headline Section -->
-        <div class="space-y-3.5">
+        <!-- Headline & Badges -->
+        <div class="space-y-4">
           <div>
             <div class="flex flex-wrap items-center gap-2">
               <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -191,18 +184,16 @@
               <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">He/Him</span>
             </div>
 
-            <!-- Current College link indicator -->
             <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-blue-400 mt-1 flex items-center gap-1.5">
               <i class="fa-solid fa-building-columns"></i> Sri Venkatesa Perumal College of Engineering and Technology (Autonomous)
             </p>
           </div>
 
-          <!-- Professional Title / Headline -->
           <p class="text-base sm:text-lg font-medium text-slate-700 dark:text-slate-200 max-w-4xl leading-relaxed">
             B.Tech CSE (AI) Student <span class="text-slate-400">|</span> AI Developer <span class="text-slate-400">|</span> Full-Stack &amp; Python Developer <span class="text-slate-400">|</span> Building Secure Web Solutions
           </p>
 
-          <!-- Location, Connections & Availability Badges -->
+          <!-- Location & Details -->
           <div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400 pt-1">
             <span class="flex items-center gap-1.5">
               <i class="fa-solid fa-location-dot text-brand-600 dark:text-blue-400"></i> Puttur, Andhra Pradesh, India
@@ -214,13 +205,50 @@
               <i class="fa-solid fa-circle text-[8px] animate-pulse"></i> Open for Internship &amp; Developer Roles
             </span>
           </div>
+
+          <!-- Direct Connected Social & Coding Profile Badges -->
+          <div class="flex flex-wrap items-center gap-2.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/menati-sathish/" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 text-xs font-semibold transition-all shadow-sm">
+              <i class="fa-brands fa-linkedin text-sm"></i>
+              <span>LinkedIn</span>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/menatisathish259-debug" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-800/10 hover:bg-slate-800/20 text-slate-800 dark:text-slate-200 border border-slate-700/30 text-xs font-semibold transition-all shadow-sm">
+              <i class="fa-brands fa-github text-sm"></i>
+              <span>GitHub</span>
+            </a>
+
+            <!-- HackerRank -->
+            <a href="https://www.hackerrank.com/profile/menatisathish259" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition-all shadow-sm">
+              <i class="fa-brands fa-hackerrank text-sm"></i>
+              <span>HackerRank</span>
+            </a>
+
+            <!-- HackerEarth -->
+            <a href="https://www.hackerearth.com/@Menati.Sathish" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 text-xs font-semibold transition-all shadow-sm">
+              <i class="fa-solid fa-laptop-code text-sm"></i>
+              <span>HackerEarth</span>
+            </a>
+
+            <!-- LeetCode -->
+            <a href="https://leetcode.com/u/menatisathish259/" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 text-xs font-semibold transition-all shadow-sm">
+              <i class="fa-solid fa-code text-sm"></i>
+              <span>LeetCode</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT SECTION -->
     <section id="about" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- About Profile Description (2 Cols) -->
       <div class="lg:col-span-2 rounded-2xl bg-white dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -243,7 +271,7 @@
               <h4 class="font-semibold text-slate-800 dark:text-slate-200 text-sm flex items-center gap-2">
                 <i class="fa-solid fa-code text-blue-500"></i> Algorithmic Thinking
               </h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Practicing Python data structures and solving algorithm challenges on HackerRank.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Practicing Python data structures and solving algorithm challenges on HackerRank and LeetCode.</p>
             </div>
             <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-800">
               <h4 class="font-semibold text-slate-800 dark:text-slate-200 text-sm flex items-center gap-2">
@@ -255,7 +283,6 @@
         </div>
       </div>
 
-      <!-- Quick Metrics / Highlights Card (1 Col) -->
       <div class="rounded-2xl bg-white dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
         <div>
           <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
@@ -312,7 +339,141 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- CODING & PROFESSIONAL PROFILES SECTION -->
+    <section id="profiles" class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <i class="fa-solid fa-chart-line text-brand-600 dark:text-blue-400"></i> Coding &amp; Professional Profiles
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Direct links to verify my code repositories, algorithmic solutions, and network.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- HackerRank -->
+        <a href="https://www.hackerrank.com/profile/menatisathish259" target="_blank" rel="noopener noreferrer" 
+           class="group rounded-2xl bg-white dark:bg-slate-900 p-5 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 shadow-sm transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
+                <i class="fa-brands fa-hackerrank"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-emerald-500 transition-colors">HackerRank</h3>
+                <p class="text-xs text-slate-400">@menatisathish259</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-emerald-400"></i>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Completed Python introductory challenges, practicing control flows, operators, and algorithmic problem sets.
+          </p>
+          <div class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+            <span>View HackerRank Profile</span>
+            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </div>
+        </a>
+
+        <!-- HackerEarth -->
+        <a href="https://www.hackerearth.com/@Menati.Sathish" target="_blank" rel="noopener noreferrer" 
+           class="group rounded-2xl bg-white dark:bg-slate-900 p-5 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 shadow-sm transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-indigo-500 transition-colors">HackerEarth</h3>
+                <p class="text-xs text-slate-400">@Menati.Sathish</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-indigo-400"></i>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Tackling competitive programming tracks, problem sets, and developer hackathon challenges.
+          </p>
+          <div class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
+            <span>View HackerEarth Profile</span>
+            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/menatisathish259-debug" target="_blank" rel="noopener noreferrer" 
+           class="group rounded-2xl bg-white dark:bg-slate-900 p-5 border border-slate-200 dark:border-slate-800 hover:border-slate-400 shadow-sm transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center text-lg">
+                <i class="fa-brands fa-github"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-400 transition-colors">GitHub</h3>
+                <p class="text-xs text-slate-400">@menatisathish259-debug</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-blue-400"></i>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Source code repositories, personal portfolio projects, web scripts, and Git version control history.
+          </p>
+          <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+            <span>View GitHub Repositories</span>
+            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </div>
+        </a>
+
+        <!-- LeetCode -->
+        <a href="https://leetcode.com/u/menatisathish259/" target="_blank" rel="noopener noreferrer" 
+           class="group rounded-2xl bg-white dark:bg-slate-900 p-5 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 shadow-sm transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-amber-500 transition-colors">LeetCode</h3>
+                <p class="text-xs text-slate-400">Algorithms &amp; Data Structures</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-amber-400"></i>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Practicing core algorithmic patterns, array manipulations, problem-solving, and time complexity optimizations.
+          </p>
+          <div class="text-[11px] font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+            <span>View LeetCode Profile</span>
+            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/menati-sathish/" target="_blank" rel="noopener noreferrer" 
+           class="group rounded-2xl bg-white dark:bg-slate-900 p-5 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 shadow-sm transition-all flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+                <i class="fa-brands fa-linkedin"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-500 transition-colors">LinkedIn</h3>
+                <p class="text-xs text-slate-400">in/menati-sathish</p>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-blue-400"></i>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Professional network, developer achievements, workshop milestones, and direct messaging.
+          </p>
+          <div class="text-[11px] font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+            <span>Connect on LinkedIn</span>
+            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
     <section id="skills" class="space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
@@ -406,7 +567,7 @@
       </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- EDUCATION SECTION -->
     <section id="education" class="space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -456,7 +617,7 @@
       </div>
     </section>
 
-    <!-- Projects & Achievements Section -->
+    <!-- PROJECTS & ACTIVITIES SECTION -->
     <section id="projects" class="space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -492,10 +653,10 @@
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Data Structures</span>
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">HackerRank</span>
             </div>
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium">
-              <span><i class="fa-solid fa-code"></i> Continuous Coding Practice</span>
+            <a href="https://www.hackerrank.com/profile/menatisathish259" target="_blank" rel="noopener noreferrer" class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium hover:underline">
+              <span><i class="fa-solid fa-code"></i> View HackerRank Solutions</span>
               <i class="fa-solid fa-arrow-right"></i>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -524,10 +685,10 @@
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Skill Development</span>
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Industry Readiness</span>
             </div>
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium">
-              <span><i class="fa-solid fa-certificate"></i> Verified Participation</span>
+            <a href="https://www.linkedin.com/in/menati-sathish/" target="_blank" rel="noopener noreferrer" class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium hover:underline">
+              <span><i class="fa-solid fa-certificate"></i> Verified LinkedIn Workshop Post</span>
               <i class="fa-solid fa-arrow-right"></i>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -556,10 +717,10 @@
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Tailwind CSS</span>
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">JavaScript</span>
             </div>
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium">
-              <span><i class="fa-solid fa-laptop-code"></i> Live Feature</span>
+            <a href="https://github.com/menatisathish259-debug/portfolio" target="_blank" rel="noopener noreferrer" class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium hover:underline">
+              <span><i class="fa-solid fa-laptop-code"></i> GitHub Source Code</span>
               <i class="fa-solid fa-arrow-right"></i>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -588,27 +749,27 @@
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">NumPy</span>
               <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">AI Logic</span>
             </div>
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium">
-              <span><i class="fa-solid fa-brain"></i> Active Coursework</span>
+            <a href="https://github.com/menatisathish259-debug" target="_blank" rel="noopener noreferrer" class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-brand-600 dark:text-blue-400 font-medium hover:underline">
+              <span><i class="fa-solid fa-brain"></i> Active GitHub Repositories</span>
               <i class="fa-solid fa-arrow-right"></i>
-            </div>
+            </a>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- CONTACT SECTION -->
     <section id="contact" class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
         
-        <!-- Contact Details Left (2 Cols) -->
+        <!-- Details Left -->
         <div class="lg:col-span-2 space-y-6">
           <div>
             <span class="text-xs uppercase tracking-widest font-bold text-brand-600 dark:text-blue-400">Contact</span>
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">Get In Touch</h2>
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-2 leading-relaxed">
-              Have an opportunity, internship, or project? Send me an email or write a message here directly.
+              Have an opportunity, internship, or project? Send me an email or connect through my profiles.
             </p>
           </div>
 
@@ -620,6 +781,16 @@
               <div class="overflow-hidden">
                 <div class="text-xs text-slate-500 dark:text-slate-400">Email Address</div>
                 <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 truncate">menatisathish259@gmail.com</div>
+              </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/menati-sathish/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                <i class="fa-brands fa-linkedin"></i>
+              </div>
+              <div class="overflow-hidden">
+                <div class="text-xs text-slate-500 dark:text-slate-400">LinkedIn Profile</div>
+                <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 truncate">in/menati-sathish</div>
               </div>
             </a>
 
@@ -645,7 +816,7 @@
           </div>
         </div>
 
-        <!-- Contact Form Right (3 Cols) -->
+        <!-- Form Right -->
         <div class="lg:col-span-3 bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800">
           <form id="contact-form" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -682,6 +853,7 @@
 
   </main>
 
+  <!-- FOOTER -->
   <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors no-print">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
       <div class="flex items-center gap-2">
