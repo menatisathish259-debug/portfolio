@@ -1,179 +1,85 @@
 /**
- * ==========================================================================
- * PORTFOLIO & RESUME - VANILLA JAVASCRIPT CONTROLLER (script.js)
- * ==========================================================================
+ * Menati Sathish - Portfolio & Resume Script
+ * Handles icon initialization, smooth scrolling, print triggers,
+ * form submission, and image loading fallbacks.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // 1. Dark / Light Mode Toggle with LocalStorage Persistence
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const darkIcon = document.getElementById('theme-toggle-dark-icon');
-  const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-  function applyTheme(isDark) {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      darkIcon?.classList.add('hidden');
-      lightIcon?.classList.remove('hidden');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      lightIcon?.classList.add('hidden');
-      darkIcon?.classList.remove('hidden');
-      localStorage.setItem('theme', 'light');
-    }
+  // 1. Initialize Lucide Icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
   }
 
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-    applyTheme(true);
-  } else {
-    applyTheme(false);
-  }
+  // 2. Print / Download PDF Triggers
+  const printBtn = document.getElementById('printBtn');
+  const downloadPdfBtn = document.getElementById('downloadPdfBtn');
 
-  themeToggleBtn?.addEventListener('click', () => {
-    const isCurrentlyDark = document.documentElement.classList.contains('dark');
-    applyTheme(!isCurrentlyDark);
-  });
-
-  // 2. Mobile Responsive Navbar Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
+  if (printBtn) {
+    printBtn.addEventListener('click', () => {
+      window.print();
     });
-  });
-
-  // 3. Dynamic Typing Text Effect
-  const roles = [
-    "Full Stack Developer",
-    "B.Tech CSE Student",
-    "Creative Problem Solver",
-    "Cloud & API Builder"
-  ];
-
-  let roleIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  const typingElement = document.getElementById('typing-text');
-  const typeSpeed = 100;
-  const eraseSpeed = 50;
-  const delayBetweenWords = 1800;
-
-  function typeWriter() {
-    if (!typingElement) return;
-
-    const currentWord = roles[roleIndex];
-    if (isDeleting) {
-      typingElement.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typingElement.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      isDeleting = true;
-      setTimeout(typeWriter, delayBetweenWords);
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      setTimeout(typeWriter, 300);
-    } else {
-      setTimeout(typeWriter, isDeleting ? eraseSpeed : typeSpeed);
-    }
   }
-  typeWriter();
 
-  // 4. Skills Category Filtering
-  const filterButtons = document.querySelectorAll('.skill-filter-btn');
-  const skillItems = document.querySelectorAll('.skill-item');
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const category = button.getAttribute('data-category');
-
-      filterButtons.forEach(btn => {
-        btn.classList.remove('bg-indigo-600', 'text-white');
-        btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-      });
-      button.classList.add('bg-indigo-600', 'text-white');
-      button.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-
-      skillItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        if (category === 'all' || itemCategory === category) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
+  if (downloadPdfBtn) {
+    downloadPdfBtn.addEventListener('click', () => {
+      window.print();
     });
-  });
-
-  // 5. Contact Form Validation & Toast Notification
-  const contactForm = document.getElementById('contact-form');
-  const nameInput = document.getElementById('form-name');
-  const emailInput = document.getElementById('form-email');
-  const messageInput = document.getElementById('form-message');
-
-  const errorName = document.getElementById('error-name');
-  const errorEmail = document.getElementById('error-email');
-  const errorMessage = document.getElementById('error-message');
-  const toast = document.getElementById('toast-notification');
-
-  function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  contactForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let isValid = true;
+  // 3. Contact Form Submission Handler
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    if (!nameInput?.value.trim()) {
-      errorName?.classList.remove('hidden');
-      isValid = false;
-    } else {
-      errorName?.classList.add('hidden');
-    }
+      const senderName = document.getElementById('senderName')?.value.trim();
+      const senderEmail = document.getElementById('senderEmail')?.value.trim();
+      const msgSubject = document.getElementById('msgSubject')?.value.trim();
+      const msgBody = document.getElementById('msgBody')?.value.trim();
 
-    if (!isValidEmail(emailInput?.value.trim() || '')) {
-      errorEmail?.classList.remove('hidden');
-      isValid = false;
-    } else {
-      errorEmail?.classList.add('hidden');
-    }
-
-    if ((messageInput?.value.trim().length || 0) < 10) {
-      errorMessage?.classList.remove('hidden');
-      isValid = false;
-    } else {
-      errorMessage?.classList.add('hidden');
-    }
-
-    if (isValid) {
-      if (toast) {
-        toast.classList.remove('translate-y-24', 'opacity-0');
-        toast.classList.add('translate-y-0', 'opacity-100');
+      if (!senderName || !senderEmail || !msgBody) {
+        alert('Please fill out all required fields.');
+        return;
       }
 
-      contactForm.reset();
+      // Generate a mailto link so it opens the user's default email client
+      const mailtoSubject = encodeURIComponent(msgSubject || 'Portfolio Contact Inquiry');
+      const mailtoBody = encodeURIComponent(
+        `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${msgBody}`
+      );
 
-      setTimeout(() => {
-        if (toast) {
-          toast.classList.add('translate-y-24', 'opacity-0');
-          toast.classList.remove('translate-y-0', 'opacity-100');
+      // Open email client with pre-filled message
+      window.location.href = `mailto:menatisathish259@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+      alert(`Thank you, ${senderName}! Your message is prepared. You can now send it directly to Menati Sathish.`);
+      contactForm.reset();
+    });
+  }
+
+  // 4. Smooth Scrolling for Navbar Links
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .hero-buttons a[href^="#"]');
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
         }
-      }, 3500);
-    }
+      }
+    });
   });
 
+  // 5. Profile Image Fallback Handler
+  const profileImg = document.getElementById('profileImg');
+  if (profileImg) {
+    profileImg.addEventListener('error', () => {
+      // Fallback in case local profile.jpeg is missing
+      profileImg.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80';
+    });
+  }
 });
