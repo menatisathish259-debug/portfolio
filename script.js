@@ -1,85 +1,102 @@
-/**
- * Menati Sathish - Portfolio & Resume Script
- * Handles icon initialization, smooth scrolling, print triggers,
- * form submission, and image loading fallbacks.
- */
+// 1. Theme Toggle (Dark / Light Mode)
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize Lucide Icons
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
+const savedTheme = localStorage.getItem('theme');
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+  document.documentElement.classList.add('dark');
+  themeIcon.classList.remove('fa-moon');
+  themeIcon.classList.add('fa-sun');
+} else {
+  document.documentElement.classList.remove('dark');
+  themeIcon.classList.remove('fa-sun');
+  themeIcon.classList.add('fa-moon');
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  const isDark = document.documentElement.classList.toggle('dark');
+  if (isDark) {
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+    localStorage.setItem('theme', 'light');
   }
+});
 
-  // 2. Print / Download PDF Triggers
-  const printBtn = document.getElementById('printBtn');
-  const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+// 2. Mobile Drawer Navigation Toggle
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-  if (printBtn) {
-    printBtn.addEventListener('click', () => {
-      window.print();
-    });
-  }
+mobileBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
 
-  if (downloadPdfBtn) {
-    downloadPdfBtn.addEventListener('click', () => {
-      window.print();
-    });
-  }
-
-  // 3. Contact Form Submission Handler
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const senderName = document.getElementById('senderName')?.value.trim();
-      const senderEmail = document.getElementById('senderEmail')?.value.trim();
-      const msgSubject = document.getElementById('msgSubject')?.value.trim();
-      const msgBody = document.getElementById('msgBody')?.value.trim();
-
-      if (!senderName || !senderEmail || !msgBody) {
-        alert('Please fill out all required fields.');
-        return;
-      }
-
-      // Generate a mailto link so it opens the user's default email client
-      const mailtoSubject = encodeURIComponent(msgSubject || 'Portfolio Contact Inquiry');
-      const mailtoBody = encodeURIComponent(
-        `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${msgBody}`
-      );
-
-      // Open email client with pre-filled message
-      window.location.href = `mailto:menatisathish259@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-
-      alert(`Thank you, ${senderName}! Your message is prepared. You can now send it directly to Menati Sathish.`);
-      contactForm.reset();
-    });
-  }
-
-  // 4. Smooth Scrolling for Navbar Links
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .hero-buttons a[href^="#"]');
-  navLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('href');
-      if (targetId && targetId !== '#') {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }
-    });
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
   });
+});
 
-  // 5. Profile Image Fallback Handler
-  const profileImg = document.getElementById('profileImg');
-  if (profileImg) {
-    profileImg.addEventListener('error', () => {
-      // Fallback in case local profile.jpeg is missing
-      profileImg.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80';
-    });
+// 3. User Photo Upload & Local Storage Handler
+const photoInput = document.getElementById('photo-upload-input');
+const profileImg = document.getElementById('profile-img');
+
+// Check if user previously uploaded a custom photo
+const storedPhoto = localStorage.getItem('custom_profile_photo');
+if (storedPhoto) {
+  profileImg.src = storedPhoto;
+}
+
+photoInput.addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      profileImg.src = e.target.result;
+      try {
+        localStorage.setItem('custom_profile_photo', e.target.result);
+      } catch(err) {
+        console.warn('Image too large for localStorage, displayed in session');
+      }
+    };
+    reader.readAsDataURL(file);
   }
+});
+
+// 4. Contact Form Handler (Opens default email client with populated info)
+const contactForm = document.getElementById('contact-form');
+const feedbackBox = document.getElementById('form-feedback');
+
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const name = document.getElementById('sender-name').value.trim();
+  const email = document.getElementById('sender-email').value.trim();
+  const subject = document.getElementById('message-subject').value.trim() || 'Portfolio Inquiry';
+  const body = document.getElementById('message-body').value.trim();
+
+  if (!name || !email || !body) {
+    feedbackBox.className = 'mt-4 p-3 rounded-xl text-xs font-medium text-center bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800';
+    feedbackBox.textContent = 'Please fill out all required fields.';
+    feedbackBox.classList.remove('hidden');
+    return;
+  }
+
+  const mailtoUrl = `mailto:menatisathish259@gmail.com?subject=${encodeURIComponent(subject + ' - from ' + name)}&body=${encodeURIComponent(body + '\n\nSender Email: ' + email)}`;
+  
+  feedbackBox.className = 'mt-4 p-3 rounded-xl text-xs font-medium text-center bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800';
+  feedbackBox.innerHTML = `<span><i class="fa-solid fa-circle-check mr-1"></i> Opening email client to send to <strong>menatisathish259@gmail.com</strong>...</span>`;
+  feedbackBox.classList.remove('hidden');
+
+  setTimeout(() => {
+    window.location.href = mailtoUrl;
+  }, 600);
+
+  contactForm.reset();
 });
